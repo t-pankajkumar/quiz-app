@@ -2,12 +2,16 @@ body{
     background-color:#eee;
 }
 
-label.radio {    
-  width: 100%;
+label.radio {
   cursor: pointer;
 }
 
-label.radio input {
+.question .col-lg-1{
+      width: 4.333333%;
+    padding-right: 0;
+    text-align: right;
+}
+/*label.radio input {
   position: absolute;
   top: 0; 
   left: 0;
@@ -16,22 +20,22 @@ label.radio input {
 }
 
 label.radio span {
-  padding: 4px 4px;
-    border: 1px solid #ccc;
-    display: inline-block;
-    /* color: red; */
-    width: 100%;
-    /* text-align: center; */
-    border-radius: 3px;
-    margin-top: 7px;
-    /* text-transform: uppercase; */
+  padding: 4px 0px;
+  border: 1px solid red;
+  display: inline-block;
+  color: red;
+  width: 100px;
+  text-align: center;
+  border-radius: 3px;
+  margin-top: 7px;
+  text-transform: uppercase;
 }
 
 label.radio input:checked + span {
-  border-color: #ccc;
-  background-color: #ccc;
+  border-color: red;
+  background-color: red;
   color: #fff;
-}
+}*/
 
 .ans {
   margin-left: 36px !important;
