@@ -36,7 +36,12 @@ label.radio input:checked + span {
   background-color: red;
   color: #fff;
 }*/
-
+.form-check-label p{
+  margin-bottom: 0;
+}
+.form-check-label pre{
+  margin-bottom: 0;
+}
 .ans {
   margin-left: 36px !important;
 }

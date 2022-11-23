@@ -26,7 +26,8 @@ function setAnswers(value, answerOption,index) {
   	'<label for="'+index+'" class="p-2 bg-light border">'+
 	    '<div class="form-check">' +
 		    '<input class="form-check-input" type="radio" name="radio" value="' + value + '" id="'+index+'">' +
-		    '<label class="form-check-label" for="'+index+'">'+ answerOption + '</label>' +
+		    '<span class="fw-bold">'+value.toUpperCase()+'. </span>'+
+			'<label class="form-check-label" for="'+index+'">'+ answerOption + '</label>' +
 	    '</div>'+
     '</label>'
   );
