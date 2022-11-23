@@ -10,8 +10,8 @@ var currentQuestion = questions[currentQuestionIndex];
 $("#quizProgress").html(currentQuestionIndex + 1+" of "+questions.length);
 setQuestion(currentQuestion);
 function setQuestion(question) {
-  // $('#question').html(question.prompt.question);
-  $('#question').html('test');
+  $('#question').html(question.prompt.question);
+  // $('#question').html('test');
   $('#options').html('');
   var optionChar = 'a';
   question.prompt.answers.forEach((item,index) => {
