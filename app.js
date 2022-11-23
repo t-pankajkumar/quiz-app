@@ -24,7 +24,7 @@ function setAnswers(value, answerOption,index) {
   return (
   	'<label for="'+index+'" class="bg-light">'+
 	    '<div class="form-check">' +
-		    '<input class="form-check-input m-2" type="radio" name="selectedOption" value="' + value + '" id="'+index+'">' +
+		    '<input class="form-check-input m-2" type="radio" name="answer" value="' + value + '" id="'+index+'">' +
 		    '<span class="fw-bold">'+value.toUpperCase()+'. </span>'+
 			'<label class="form-check-label p-2 w-100 ms-2 bg-secondary" style="--bs-bg-opacity: .1;" for="'+index+'">'+ answerOption + '</label>' +
 	    '</div>'+
@@ -33,20 +33,21 @@ function setAnswers(value, answerOption,index) {
 }
 
 $("#next").on('click',function(){
-	var selectedOption = $(document).find("input[name=selectedOption]:checked").val();
-	if (!selectedOption){
+	var selectedAnswer = $(document).find("input[name=answer]:checked").val();
+	if (!selectedAnswer){
 		showMessage('Please select and option');
 		return false;
 	}
-    if (currentQuestionIndex < questions.length - 1) {
-      currentQuestionIndex++;
-      setQuestion(questions[currentQuestionIndex]);
-      $("#questionNumber").html(currentQuestionIndex + 1);
-      $("#quizProgress").html(
-        currentQuestionIndex + 1 + " of " + questions.length
-      );
-	  $("#previous").removeClass('invisible');
-    }
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex++;
+    setQuestion(questions[currentQuestionIndex]);
+    $("#questionNumber").html(currentQuestionIndex + 1);
+    $("#quizProgress").html(
+      currentQuestionIndex + 1 + " of " + questions.length
+    );
+    $("#previous").removeClass('invisible');
+    questions[currentQuestionIndex].user_answer = selectedAnswer;
+  }
 });
 
 $("#previous").on('click',function(){
@@ -55,6 +56,7 @@ $("#previous").on('click',function(){
 		setQuestion(questions[currentQuestionIndex]);
 		$("#questionNumber").html(currentQuestionIndex + 1)
 		$("#quizProgress").html(currentQuestionIndex + 1+" of "+questions.length);
+    $('input[name="answer"][value="'+questions[currentQuestionIndex].user_answer+'"]').prop('checked',true)
 	}
 	if(currentQuestionIndex === 0){
 		$("#previous").addClass("invisible");
