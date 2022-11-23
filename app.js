@@ -9,7 +9,6 @@ var currentQuestionIndex = 0;
 var currentQuestion = questions[currentQuestionIndex];
 $("#quizProgress").html(currentQuestionIndex + 1+" of "+questions.length);
 setQuestion(currentQuestion);
-console.log(currentQuestion);
 function setQuestion(question) {
   // $('#question').html(question.prompt.question);
   $('#question').html('test');
@@ -23,23 +22,31 @@ function setQuestion(question) {
 
 function setAnswers(value, answerOption,index) {
   return (
-  	'<label for="'+index+'" class="p-2 bg-light border">'+
+  	'<label for="'+index+'" class="bg-light">'+
 	    '<div class="form-check">' +
-		    '<input class="form-check-input" type="radio" name="radio" value="' + value + '" id="'+index+'">' +
+		    '<input class="form-check-input m-2" type="radio" name="selectedOption" value="' + value + '" id="'+index+'">' +
 		    '<span class="fw-bold">'+value.toUpperCase()+'. </span>'+
-			'<label class="form-check-label" for="'+index+'">'+ answerOption + '</label>' +
+			'<label class="form-check-label p-2 w-100 ms-2 bg-secondary" style="--bs-bg-opacity: .1;" for="'+index+'">'+ answerOption + '</label>' +
 	    '</div>'+
     '</label>'
   );
 }
 
 $("#next").on('click',function(){
-	if(currentQuestionIndex < questions.length -1){
-		currentQuestionIndex++;
-		setQuestion(questions[currentQuestionIndex]);
-		$("#questionNumber").html(currentQuestionIndex + 1)
-		$("#quizProgress").html(currentQuestionIndex + 1+" of "+questions.length);
+	var selectedOption = $(document).find("input[name=selectedOption]:checked").val();
+	if (!selectedOption){
+		showMessage('Please select and option');
+		return false;
 	}
+    if (currentQuestionIndex < questions.length - 1) {
+      currentQuestionIndex++;
+      setQuestion(questions[currentQuestionIndex]);
+      $("#questionNumber").html(currentQuestionIndex + 1);
+      $("#quizProgress").html(
+        currentQuestionIndex + 1 + " of " + questions.length
+      );
+	  $("#previous").removeClass('invisible');
+    }
 });
 
 $("#previous").on('click',function(){
@@ -49,4 +56,27 @@ $("#previous").on('click',function(){
 		$("#questionNumber").html(currentQuestionIndex + 1)
 		$("#quizProgress").html(currentQuestionIndex + 1+" of "+questions.length);
 	}
+	if(currentQuestionIndex === 0){
+		$("#previous").addClass("invisible");
+	}
 });
+
+function showMessage(status,message) {
+  status = status === "success" ? "primary" : "danger";
+  var toastConetent =
+    '<div id="liveToast" class="toast align-items-center text-bg-' +
+    status +
+    '" role="alert" aria-live="assertive" aria-atomic="true">' +
+    '<div class="d-flex">' +
+    '<div class="toast-body">' +
+    message +
+    "</div>" +
+    '<button type="button" class="btn-close me-2 m-auto btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>' +
+    "</div>" +
+    "</div>";
+  $(".toastHolder").html(toastConetent);
+  var toast = new bootstrap.Toast($(document).find("#liveToast"));
+
+  toast.show();
+}
+
