@@ -35,10 +35,11 @@ function setAnswers(value, answerOption,index) {
 $("#next").on('click',function(){
 	var selectedAnswer = $(document).find("input[name=answer]:checked").val();
 	if (!selectedAnswer){
-		showMessage('Please select and option');
+		showMessage('danger','Please select and option');
 		return false;
 	}
   if (currentQuestionIndex < questions.length - 1) {
+	questions[currentQuestionIndex].user_answer = selectedAnswer;
     currentQuestionIndex++;
     setQuestion(questions[currentQuestionIndex]);
     $("#questionNumber").html(currentQuestionIndex + 1);
@@ -46,7 +47,6 @@ $("#next").on('click',function(){
       currentQuestionIndex + 1 + " of " + questions.length
     );
     $("#previous").removeClass('invisible');
-    questions[currentQuestionIndex].user_answer = selectedAnswer;
   }
 });
 
