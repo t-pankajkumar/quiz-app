@@ -80,6 +80,11 @@ $('#next').on('click', function () {
     );
     $('#previous').removeClass('invisible');
   }
+  if(currentQuestionIndex === questions.length -1){
+    $('#next').removeClass('btn-primary').addClass('btn-success');
+    $("#nextBtnText").html("Submit");
+    console.log('submit')
+  }
 });
 
 $('#previous').on('click', function () {
@@ -95,6 +100,8 @@ $('#previous').on('click', function () {
         questions[currentQuestionIndex].user_answer +
         '"]'
     ).prop('checked', true);
+    $('#next').addClass('btn-primary').removeClass('btn-success');
+    $("#nextBtnText").html("Next");
   }
   if (currentQuestionIndex === 0) {
     $('#previous').addClass('invisible');
