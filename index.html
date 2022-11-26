@@ -19,7 +19,7 @@
 						<label for="inputEmail3" class="col-sm-2 col-form-label">Select Quiz Set</label>
 						<div class="col-sm-10">
 							<select class="form-select" aria-label="Default select example" id="quizSet">
-								
+
 							</select>
 						</div>
 					</div>
@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<div class="d-flex justify-content-center row">
-			<div class="col-md-12 col-lg-12">
+			<div class="col-md-12 col-lg-12" id="quizBlock">
 				<div class="border">
 					<div class="question bg-white p-3 border-bottom">
 						<div class="d-flex flex-row justify-content-between align-items-center mcq">
@@ -57,14 +57,49 @@
 									d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
 							</svg> Previous
 						</button>
-						<button class="btn btn-primary border-primary d-flex align-items-center btn-primary"
-							type="button" id="next">
-							<span id="nextBtnText">Next</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+						<button class="btn btn-primary border-primary d-flex align-items-center" type="button"
+							id="next">
+							Next <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 								class="bi bi-chevron-right" viewBox="0 0 16 16">
 								<path fill-rule="evenodd"
 									d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
 							</svg>
 						</button>
+						<button class="btn btn-success border-success d-flex align-items-center d-none" type="button"
+							id="submit">
+							Submit <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+								class="bi bi-chevron-right" viewBox="0 0 16 16">
+								<path fill-rule="evenodd"
+									d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-12 d-none" id="resultBlock">
+				<div class="border">
+					<div class="question bg-white p-3 border-bottom">
+						<div class="d-flex flex-row justify-content-between align-items-center mcq">
+							<h4>MCQ Quiz</h4>
+						</div>
+					</div>
+					<div class="bg-white p-3 d-flex justify-content-center">
+						<div>
+							<div class="row text-center">
+								<p>Result</p>
+								<h5 id="result">10/31</h5>
+							</div>
+							<div class="d-flex flex-row justify-content-center align-items-center p-3 bg-white">
+								<button class="btn btn-primary border-primary d-flex align-items-center" type="button"
+									id="nextSet">
+									Next Set <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+										fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+										<path fill-rule="evenodd"
+											d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+									</svg>
+								</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
