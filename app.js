@@ -81,6 +81,13 @@ $('#next').on('click', function () {
       currentQuestionIndex + 1 + ' of ' + questions.length
     );
     $('#previous').removeClass('invisible');
+    if (questions[currentQuestionIndex].hasOwnProperty('user_answer')) {
+      $(
+        'input[name="answer"][value="' +
+          questions[currentQuestionIndex].user_answer +
+          '"]'
+      ).prop('checked', true);
+    }
   }
   if (currentQuestionIndex === questions.length - 1) {
     $('#next').addClass('d-none');
