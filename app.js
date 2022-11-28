@@ -102,6 +102,7 @@ $('#submit').on('click', function () {
     showMessage('danger', 'Please select and option');
     return false;
   }
+  questions[currentQuestionIndex].user_answer = selectedAnswer;
   var correctQuestions = questions.filter((item) =>
     item.correct_response.includes(item.user_answer)
   ).length;
