@@ -40,6 +40,7 @@ function setQuestion(question) {
     $('#options').append(setAnswers(optionChar, item, index));
     optionChar = String.fromCharCode(optionChar.charCodeAt(0) + 1);
   });
+  $('#explanation').html(question.prompt.explanation)
 }
 
 function setAnswers(value, answerOption, index) {
