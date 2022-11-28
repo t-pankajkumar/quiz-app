@@ -40,7 +40,7 @@ function setQuestion(question) {
     $('#options').append(setAnswers(optionChar, item, index));
     optionChar = String.fromCharCode(optionChar.charCodeAt(0) + 1);
   });
-  $('#explanation').html(question.prompt.explanation)
+  $('#explanation').html(question.prompt.explanation);
 }
 
 function setAnswers(value, answerOption, index) {
@@ -73,6 +73,7 @@ $('#next').on('click', function () {
     showMessage('danger', 'Please select and option');
     return false;
   }
+  $('#collapseOne').removeClass('show');
   if (currentQuestionIndex < questions.length - 1) {
     questions[currentQuestionIndex].user_answer = selectedAnswer;
     currentQuestionIndex++;
