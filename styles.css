@@ -49,7 +49,7 @@ label.radio input:checked + span {
   margin-bottom: 0 !important;
 }
 .question img{
-  width: 100%;
+  max-width: 100%;
 }
 .ans {
   margin-left: 36px !important;
