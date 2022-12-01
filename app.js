@@ -43,11 +43,21 @@ function setQuestion(question) {
   $('#explanation').html(question.prompt.explanation);
 }
 
-function setAnswers(value, answerOption, index) {
+function setAnswers(value, answerOption, index,item) {
+  var bg = '';
+  if(item && item.correct_response.includes(item.user_answer) && item.user_answer == value){
+    bg = 'border border-2 border-success';
+  }
+  else if(item && item.user_answer == value){
+    bg = 'border border-2 border-danger';
+  }
+  if(item && item.correct_response.includes(value)){
+    bg = 'border border-2 border-success';
+  }
   return (
     '<label for="' +
     index +
-    '" class="bg-light">' +
+    '" class="bg-light '+bg+'">' +
     '<div class="form-check">' +
     '<input class="form-check-input m-2" type="radio" name="answer" value="' +
     value +
@@ -111,7 +121,43 @@ $('#submit').on('click', function () {
   $('#quizBlock').addClass('d-none');
   $('#resultBlock').removeClass('d-none');
   $('#result').html(correctQuestions + '/' + questions.length);
+  var summary = '';
+  $('#summary').html();
+  questions.forEach((item,index) => {
+    summary = summary + summaryBlock(item,index)
+  })
+  $('#summary').append(summary);
 });
+
+function summaryBlock(item,index){
+  var optionChar = 'a';
+  var optionHtml = '';
+  item.prompt.answers.forEach((item1, index1) => {
+    optionHtml += setAnswers(optionChar, item1, index1,item);
+    optionChar = String.fromCharCode(optionChar.charCodeAt(0) + 1);
+  });
+  return '<div class="question bg-white p-3 border-bottom d-flex">'+
+  '<div class="pe-1">'+
+    '<span class="mt-1" id="questionNumber">'+(index+1)+'. </span>'+
+  '</div>'+
+  '<div>'+
+    '<span class="mt-1" id="question">'+item.prompt.question+'</span>'+
+    '<div class="d-grid gap-3 mt-2" id="options">'+optionHtml+'</div>'+
+    '<div class="accordion mt-2" id="accordionExample">'+
+      '<div class="accordion-item">'+
+        '<h2 class="accordion-header" id="headingOne">'+
+          '<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse'+index+'" aria-expanded="true" aria-controls="collapse'+index+'">Show Explanation</button>'+
+        '</h2>'+
+        '<div id="collapse'+index+'" class="accordion-collapse collapse"  aria-labelledby="headingOne" data-bs-parent="#accordionExample">'+
+          '<div class="accordion-body" id="explanation">'+
+              item.prompt.explanation +
+          '</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+  '</div>'+
+'</div>'
+}
 
 $('#nextSet').on('click', function () {
   $('#quizSet')
