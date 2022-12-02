@@ -41,6 +41,7 @@ function setQuestion(question) {
     optionChar = String.fromCharCode(optionChar.charCodeAt(0) + 1);
   });
   $('#explanation').html(question.prompt.explanation);
+  $('#section').html(question.section);
 }
 
 function setAnswers(value, answerOption, index,item) {
@@ -136,7 +137,7 @@ function summaryBlock(item,index){
     optionHtml += setAnswers(optionChar, item1, index1,item);
     optionChar = String.fromCharCode(optionChar.charCodeAt(0) + 1);
   });
-  return '<div class="question bg-white p-3 border-bottom d-flex">'+
+  return '<span class="badge rounded-pill text-bg-light">'+(item.section)+'</span><div class="question bg-white p-3 border-bottom d-flex">'+
   '<div class="pe-1">'+
     '<span class="mt-1" id="questionNumber">'+(index+1)+'. </span>'+
   '</div>'+
